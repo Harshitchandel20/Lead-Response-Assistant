@@ -8,7 +8,8 @@ export interface ReplyResponse {
 }
 
 export async function fetchReply(messages: Message[]): Promise<ReplyResponse> {
-    const response = await fetch('http://localhost:8000/generate-reply', {
+    const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
+    const response = await fetch(`${baseUrl}/generate-reply`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
