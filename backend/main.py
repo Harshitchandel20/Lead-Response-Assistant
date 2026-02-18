@@ -16,6 +16,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+async def root():
+    return {"message": "Lead Response Assistant API is running"}
+
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
+
 @app.post("/generate-reply", response_model=GenerateReplyResponse)
 async def generate_reply(request: GenerateReplyRequest):
     try:
